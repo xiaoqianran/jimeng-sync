@@ -1,0 +1,34 @@
+{
+  "name": "jimeng-sync-api",
+  "version": "1.0.0",
+  "description": "Jimeng prompt sync API for MySQL",
+  "main": "server.js",
+  "bin": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "pkg . --targets node18-win-x64 --output dist/jimeng-sync-api.exe"
+  },
+  "keywords": [
+    "jimeng",
+    "mysql",
+    "sync",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "scripts": [
+      "server.js"
+    ],
+    "assets": []
+  }
+}
