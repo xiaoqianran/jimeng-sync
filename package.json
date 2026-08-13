@@ -1,11 +1,14 @@
 {
   "name": "jimeng-sync-api",
-  "version": "0.1.0",
-  "description": "Jimeng prompt sync API for MySQL",
+  "version": "0.2.0",
+  "description": "Jimeng local-first backup and bidirectional remote sync",
   "main": "server.js",
   "bin": "server.js",
   "scripts": {
     "start": "node server.js",
+    "app": "node scripts/launch.js",
+    "start:remote": "node scripts/launch-remote.js",
+    "test": "node --test test/*.test.js",
     "build": "pkg . --targets node18-win-x64 --output dist/jimeng-sync-api.exe"
   },
   "keywords": [

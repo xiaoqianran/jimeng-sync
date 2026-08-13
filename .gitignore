@@ -4,3 +4,9 @@ dist/
 *.exe
 .DS_Store
 *.log
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/config.json
+data/jimeng.db
+data/images/

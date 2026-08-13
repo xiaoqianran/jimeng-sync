@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>即梦收集台</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <div class="logo">即</div>
+      <div>
+        <strong>即梦收集台</strong>
+        <span class="muted" id="barSub">本地画廊</span>
+      </div>
+    </div>
+    <div class="search">
+      <input id="q" placeholder="搜索提示词、作者、备注…" />
+    </div>
+    <div class="metrics">
+      <div class="metric"><em id="statActive">0</em><span>在库</span></div>
+      <div class="metric"><em id="statLive">0</em><span>本批写入</span></div>
+      <div class="metric"><em id="statDirty">0</em><span>待同步</span></div>
+      <div class="metric"><em id="statFav">0</em><span>收藏</span></div>
+    </div>
+    <div class="bar-actions">
+      <i id="liveDot" class="dot" title="连接状态"></i>
+      <button class="primary" id="btnSync">同步</button>
+      <button id="btnSettings">设置</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="chips">
+      <button class="chip on" id="chipAll">全部</button>
+      <button class="chip" id="btnFavOnly">收藏</button>
+      <button class="chip" id="btnShowDeleted">已删除</button>
+    </div>
+    <p class="muted" id="pageInfo">尚未入库</p>
+    <div class="toolbar-right">
+      <select id="pageSize" title="每页数量">
+        <option value="24">24 / 页</option>
+        <option value="48" selected>48 / 页</option>
+        <option value="96">96 / 页</option>
+      </select>
+      <button id="btnPrev">上一页</button>
+      <span id="pagerText">1 / 1</span>
+      <button id="btnNext">下一页</button>
+    </div>
+  </div>
+
+  <div class="banner" id="restoreBanner">这份库来自另一台设备。可在设置里标记为新设备。</div>
+  <div class="banner live" id="newBanner" hidden>有新图入库。<button id="btnJumpNew">回到最新</button></div>
+  <div class="toast" id="toast" hidden></div>
+
+  <main>
+    <div id="grid" class="grid"></div>
+    <div class="empty" id="empty">打开即梦并点「持续采集」后，作品会实时出现在这里。</div>
+  </main>
+
+  <footer class="pager">
+    <button id="btnPrev2">上一页</button>
+    <span id="pagerText2">1 / 1</span>
+    <button id="btnNext2">下一页</button>
+  </footer>
+
+  <p class="path muted" id="syncMsg"></p>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="nav prev" id="lbPrev" aria-label="上一张">‹</button>
+    <div class="sheet">
+      <img id="lbImg" alt="" />
+      <div class="sheet-body">
+        <div class="meta" id="lbMeta"></div>
+        <p class="prompt" id="lbPrompt"></p>
+        <label>备注</label>
+        <textarea id="lbNotes" rows="3"></textarea>
+        <label>标签</label>
+        <input id="lbTags" />
+        <div class="row">
+          <button id="lbCopy">复制提示词</button>
+          <button id="lbFav">收藏</button>
+          <button class="ok" id="lbSave">保存</button>
+          <button class="danger" id="lbDel">删除</button>
+          <button id="lbClose">关闭</button>
+        </div>
+        <p class="muted">← → 翻张 · Esc 关闭 · C 复制</p>
+      </div>
+    </div>
+    <button class="nav next" id="lbNext" aria-label="下一张">›</button>
+  </div>
+
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-card">
+      <h3>设置</h3>
+      <label>设备名</label>
+      <input id="deviceName" />
+      <label>远程地址</label>
+      <input id="remoteUrl" placeholder="留空则只做本地备份" />
+      <label>远程 Token</label>
+      <input id="remoteToken" type="password" placeholder="已保存则不必重填" />
+      <label>自动同步（毫秒）</label>
+      <input id="autoSyncMs" type="number" />
+      <p class="muted" id="deviceId"></p>
+      <p class="muted" id="dbPath"></p>
+      <div class="row">
+        <button id="btnTest">测试远程</button>
+        <button id="btnExport">导出 JSONL</button>
+        <button id="btnBackup">下载数据库</button>
+        <button class="danger" id="btnCleanJunk">清理误收配音</button>
+      </div>
+      <div class="row">
+        <button class="ok" id="btnSaveCfg">保存</button>
+        <button class="danger" id="btnNewDevice">标记为新设备</button>
+        <button id="btnCloseDrawer">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
